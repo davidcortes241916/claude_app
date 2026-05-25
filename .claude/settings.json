@@ -1,0 +1,84 @@
+{
+  "project": {
+    "name": "PRUEBASCLAUDE",
+    "version": "1.0.0",
+    "description": "Sistema de tickets interactivo con DJANGO REST APIs"
+  },
+
+  "model": {
+    "default": "claude-sonnet-4",
+    "fallback": "claude-opus-4",
+    "temperature": 0.2,
+    "max_tokens": 4096
+  },
+  
+  "context": {
+    "include_paths": [
+      "manage.py",
+      "project/",
+      "apps/",
+      "templates/",
+      "static/"
+    ],
+    "exclude_paths": [
+      "venv/",
+      ".venv/",
+      "__pycache__/",
+      "migrations/",
+      "staticfiles/",
+      "media/"
+    ],
+    "max_context_files": 25
+  },
+
+  "rules": {
+    "coding_style": "django-best-practice",
+    "language": "es",
+    "response_format": "conciso",
+    "prefer_comments": true,
+    "prefer_class_based_views": true,
+    "avoid_business_logic_in_views": true
+  },
+
+  "tools": {
+    "enable_web": false,
+    "enable_filesystem": true,
+    "enable_shell": true
+  },
+
+  "agents": {
+    "planner": {
+      "enabled": true,
+      "style": "django-architecture-first"
+    },
+    "coder": {
+      "enabled": true,
+      "style": "django-production-ready"
+    },
+    "reviewer": {
+      "enabled": true,
+      "strictness": "high",
+      "focus": [
+        "security",
+        "performance",
+        "django-best-practices"
+      ]
+    }
+  },
+
+  "memory": {
+    "enabled": true,
+    "persist_session": true,
+    "remember": [
+      "project_structure",
+      "django_apps",
+      "database_models"
+    ]
+  },
+
+  "logging": {
+    "level": "info",
+    "save_logs": true,
+    "log_path": ".claude/logs"
+  }
+}
