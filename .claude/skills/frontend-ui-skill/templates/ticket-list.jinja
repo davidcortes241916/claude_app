@@ -1,0 +1,11 @@
+{# REQUIRED: ticket (lista de tickets) #}
+
+<div class="tickets-grid">
+
+    {% for ticket in tickets %}
+
+        {% include "card.html.jinja" %}
+        
+    {% endfor %}
+
+</div>

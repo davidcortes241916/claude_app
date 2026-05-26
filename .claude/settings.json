@@ -5,12 +5,7 @@
     "description": "Sistema de tickets interactivo con DJANGO REST APIs"
   },
 
-  "model": {
-    "default": "claude-sonnet-4",
-    "fallback": "claude-opus-4",
-    "temperature": 0.2,
-    "max_tokens": 4096
-  },
+  "model": "claude-3-5-sonnet-latest",
   
   "context": {
     "include_paths": [
@@ -45,7 +40,7 @@
     "enable_filesystem": true,
     "enable_shell": true
   },
-
+  
   "memory": {
     "enabled": true,
     "persist_session": true,

@@ -1,0 +1,32 @@
+{# REQUIRED: ticket.id, ticket.titulo #}
+{# OPTIONAL: ticket.description, ticket.status, ticket.priority #}
+
+<div class="ticket-card ticket-card--{{ ticket.status | default('abierto') }}">
+
+  <div class="ticket-card__header">
+    <h3 class="ticket-card__title">
+      #{{ ticket.id }} - {{ ticket.title }}
+    </h3>
+  </div>
+
+  {% if ticket.description %}
+  <div class="ticket-card__body">
+    <p class="ticket-card__description">
+      {{ ticket.description }}
+    </p>
+  </div>
+  {% endif %}
+
+  <div class="ticket-card__footer">
+
+    <span class="ticket-card__status">
+      {{ ticket.status | default('abierto') }}
+    </span>
+
+    <span class="ticket-card__priority">
+      {{ ticket.priority | default('baja') }}
+    </span>
+
+  </div>
+
+</div>
