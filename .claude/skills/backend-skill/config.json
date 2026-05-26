@@ -1,0 +1,16 @@
+{
+    "name": "backend-skill",
+    "version": "1.0.0",
+    "scope": "backend-only",
+    "lenguages": ["python", "JSON", "Javascript"],
+    "frameworks": ["django"],
+    "supports": [
+        "django_rest_api",
+        "authentication_jwt",
+        "crud_operations",
+        "database_design",
+        "orm_queries",
+        "validation",
+        "admin_panel"
+    ]
+}

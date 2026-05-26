@@ -117,6 +117,13 @@ Un ticket debe contener:
   - lógica
   - presentación
   - datos
+- Evitar:
+  - ls
+  - grep
+  - cat
+  - rm
+  - mv
+  - cp
 
 ---
 
@@ -129,3 +136,10 @@ Desarrollar una aplicación sencilla de tickets usando Django, enfocada en:
 - claridad del código
 - separación de responsabilidades
 - facilidad de escalabilidad futura
+
+# Entorno
+
+Sistema operativo: windows
+shell: powershell, cmd
+
+todos los comandos deben ser compatibles con powershell/cmd
