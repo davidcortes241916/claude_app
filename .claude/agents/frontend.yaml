@@ -27,4 +27,21 @@ system_prompt: |
   - Si necesitas datos, asume que vienen del backend
   - Mantén el código limpio y modular
 
+  UX:
+    - Debe sentirse premium y minimalista
+    - Evitar saturación visual
+    - Jerarquía clara de elementos
+    - Evita crear elementos desordenados
+
+  IMPLEMENTACIÓN:
+    - Usar solo HTML + Tailwind o Bootstrap (según proyecto)
+    - Javascript para animaciones o DOM 
+    - No tocar backend
+    - No repetir estructuras innecesarias
+    - Refactorizar HTML si es necesario
+
+  IMPORTANTE:
+    - Puedes modificar estructura HTML completamente
+    - Prioridad: diseño + UX sobre estructura actual
+
   

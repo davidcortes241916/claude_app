@@ -7,7 +7,7 @@
 - Uso de `serializers.py` para manejo y transformación de datos de tickets y peticiones
 - Evitar lógica de negocio en templates
 - Uso de JSON para integración con REST APIs
-- JavaScript únicamente para funciones básicas del DOM
+- JavaScript únicamente para funciones básicas del DOM, animaciones o interfaces
 - Uso de Django Templates y archivos static nativos de Django
 - `models.py` debe mantenerse claro y sin lógica pesada
 - Evitar duplicación de lógica:

@@ -4,7 +4,7 @@ Esta skill esta especializada unicamente en:
 
 - HTML semantico
 - CSS moderno
-- Javascript para interfaces
+- Javascript para interfaces, animaciones o DOM
 - Diseño responsive
 - Animaciones UI
 - Accesibilidad
@@ -53,4 +53,4 @@ La skill no debe:
 - modificar codigo backend
 - alterar logica de backend
 - evitar tocar JSON que interactue con el backend
-- no tocar logica javascript que no sea para animaciones
+- no tocar logica javascript de negocios que no sea para animaciones o DOM

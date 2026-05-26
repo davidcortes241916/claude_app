@@ -9,6 +9,8 @@
         "dark-mode",
         "animations",
         "accessibility",
-        "component-generation"
+        "component-generation",
+        "javascript-DOM",
+        "interface"
     ]
 }

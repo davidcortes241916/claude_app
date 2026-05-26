@@ -1,11 +1,28 @@
+{% load static %}
 <nav class="navbar">
   <div class="navbar-container">
-    <a href="/" class="navbar-brand">Sistema de Tickets</a>
-    <div class="navbar-menu">
-      <a href="{% url 'core:inicio' %}" class="navbar-link">Inicio</a>
-      <a href="{% url 'ticket:login' %}" class="navbar-link">Login</a>
-      <a href="{% url 'ticket:logout' %}" class="navbar-link">Logout</a>
-      <a href="{% url 'ticket:registrar' %}" class="navbar-link">Registrar</a>
+    <!-- Logo and Title -->
+    <div class="navbar-logo">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-title">Sistema de Tickets</span>
+      </a>
     </div>
+
+    <!-- Navigation menu -->
+    <div class="navbar-menu" id="navbar-menu">
+      <button class="nav-close-btn" id="nav-close-btn">
+        <span class="close-icon"></span>
+      </button>
+      <a href="{% url 'core:inicio' %}" class="navbar-link {% if request.resolver_match.url_name == 'inicio' %}active{% endif %}">Inicio</a>
+      <a href="#" class="navbar-link {% if request.resolver_match.url_name == 'crear' %}active{% endif %}">Crear Ticket</a>
+      <a href="#" class="navbar-link {% if request.resolver_match.url_name == 'login' %}active{% endif %}">Login</a>
+      <a href="#" class="navbar-link {% if request.resolver_match.url_name == 'logout' %}active{% endif %}">Logout</a>
+    </div>
+
+    <!-- Menu toggle for mobile -->
+    <div class="navbar-toggle" id="mobile-menu-toggle">
+      <span class="hamburger"></span>
+    </div>
+
   </div>
 </nav>
