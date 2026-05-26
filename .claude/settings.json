@@ -46,26 +46,6 @@
     "enable_shell": true
   },
 
-  "agents": {
-    "planner": {
-      "enabled": true,
-      "style": "django-architecture-first"
-    },
-    "coder": {
-      "enabled": true,
-      "style": "django-production-ready"
-    },
-    "reviewer": {
-      "enabled": true,
-      "strictness": "high",
-      "focus": [
-        "security",
-        "performance",
-        "django-best-practices"
-      ]
-    }
-  },
-
   "memory": {
     "enabled": true,
     "persist_session": true,
