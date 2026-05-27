@@ -1,7 +1,9 @@
 :root {
   --primary: #3376FC;
-  --secondary: #D9EAFF;
+  --secondary: #65758a;
+  --tertiary: #022857;
   --background: #ffffff;
   --radius: 16px;
   --shadow: 0 10px 30px rgba(0,0,0,0.1);
+  --font: "Arial", Helvetica, sans-serif;
 }

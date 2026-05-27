@@ -10,6 +10,19 @@
   --transition-speed: 0.3s;
   --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   --dark-bg: rgba(0, 0, 0, 0.8);
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Override Bootstrap theme variables */
+:root {
+  --bs-primary: var(--primary-color);
+  --bs-primary-rgb: 51,118,252;
+  --bs-body-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --bs-font-size-base: 1rem;
+  --bs-border-radius: var(--border-radius);
+  --bs-box-shadow: var(--box-shadow);
+  --bs-link-color: var(--text-light);
+  --bs-link-hover-color: var(--text-light);
 }
 
 /* Base Styles */
@@ -19,12 +32,21 @@
   box-sizing: border-box;
 }
 
+/* Smooth transitions for all elements */
+* {
+  transition: background-color var(--transition-speed) var(--transition-easing),
+              color var(--transition-speed) var(--transition-easing),
+              transform var(--transition-speed) var(--transition-easing),
+              box-shadow var(--transition-speed) var(--transition-easing),
+              opacity var(--transition-speed) var(--transition-easing);
+}
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--bs-body-font-family);
   line-height: 1.6;
 }
 
-/* Navbar Styles */
+/* Custom Navbar Styles */
 .navbar {
   position: fixed;
   top: 0;
@@ -35,69 +57,125 @@ body {
   color: var(--text-light);
   box-shadow: var(--box-shadow);
   z-index: 1000;
-  display: flex;
-  align-items: center;
+  padding: 0;
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  /* Add subtle animation on scroll - will be enhanced with JS if needed */
+  transition: background-color var(--transition-speed) var(--transition-easing),
+              box-shadow var(--transition-speed) var(--transition-easing);
 }
 
-/* Container layout - use space-between to push logo and menu apart */
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0 1.5rem;
+/* Adjust for mobile */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
 }
 
-/* Menu stays in natural flow (will be positioned by container's justify-content) */
-.navbar-menu {
-  /* margin-left: auto removed - using justify-content: space-between instead */
-}
-
-/* Logo/Brand */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.navbar-logo-img {
-  height: 40px;
-  width: auto;
-}
-
+/* Branding */
 .navbar-brand {
   color: var(--text-light);
   text-decoration: none;
   font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: -0.5px;
-  transition: opacity var(--transition-speed) ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  transition: opacity var(--transition-speed) ease;
 }
 
 .navbar-brand:hover {
   opacity: 0.9;
 }
 
-/* Navbar Title */
 .navbar-title {
   font-size: 1.2rem;
   font-weight: 600;
 }
 
-/* Menu Styles */
-.navbar-menu {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 2rem;
-  align-items: center;
-  /* margin-left: auto removed - using justify-content: space-between on container instead */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  .navbar-title {
+    font-size: 1rem;
+  }
 }
 
-/* Navigation Links */
-.navbar-link {
+/* Navbar Toggler */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  margin: 0.25rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: var(--border-radius);
+  transition: background var(--transition-speed) ease;
+}
+
+.navbar-toggler:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255,255,255,0.25);
+  outline: none;
+}
+
+/* Custom hamburger icon */
+.navbar-toggler-icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  background-image: none; /* Remove default background */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+/* Three lines using CSS */
+.navbar-toggler-icon::before,
+.navbar-toggler-icon,
+.navbar-toggler-icon::after {
+  display: block;
+  background-color: var(--text-light);
+  height: 2px;
+  position: relative;
+  border-radius: 2px;
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.navbar-toggler-icon::before {
+  top: -6px;
+}
+
+.navbar-toggler-icon::after {
+  top: 6px;
+}
+
+/* Animate toggler when active (open) */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Nav Links */
+.navbar-nav .nav-link {
   color: var(--text-light);
   text-decoration: none;
   font-weight: 500;
@@ -107,21 +185,26 @@ body {
   transition: all var(--transition-speed) ease;
   position: relative;
   overflow: hidden;
+  margin: 0 0.25rem;
 }
 
-.navbar-link:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+.navbar-nav .nav-link:hover {
+  background-color: rgba(255,255,255,0.15);
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.navbar-link.active {
-  background-color: rgba(255, 255, 255, 0.2);
+.navbar-nav .nav-link:active {
+  transform: translateY(0);
+}
+
+.navbar-nav .nav-link.active {
+  background-color: rgba(255,255,255,0.2);
   font-weight: 600;
-  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.3);
 }
 
-/* Active indicator */
-.navbar-link.active::after {
+.navbar-nav .nav-link.active::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -133,93 +216,55 @@ body {
   border-radius: 1px;
 }
 
-/* Mobile Menu Toggle */
-.navbar-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
-  cursor: pointer;
+/* Adjust nav-link for mobile (full width) */
+@media (max-width: 768px) {
+  .navbar-nav .nav-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+    margin: 0.5rem 0;
+    border-radius: var(--border-radius);
+    background-color: rgba(255,255,255,0.05);
+    width: 80%;
+    max-width: 300px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-speed) var(--transition-easing),
+                transform var(--transition-speed) var(--transition-easing);
+  }
+
+  .navbar-nav .nav-link:hover {
+    background-color: rgba(255,255,255,0.15);
+    transform: translateX(5px);
+  }
+
+  .navbar-nav .nav-link.active {
+    background-color: rgba(255,255,255,0.2);
+  }
+
+  /* Animate menu items when menu opens */
+  .navbar-collapse.show .navbar-nav .nav-link {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(50ms * var(--item-index, 0));
+  }
 }
 
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-light);
-  border-radius: 2px;
-  transition: all var(--transition-speed) ease;
+/* Ensure dropdown menu (if any) works */
+.navbar-collapse {
+  justify-content: flex-end;
+  /* Add smooth transition for height/width when collapsing */
+  transition: height 0.3s ease, width 0.3s ease;
 }
 
-.hamburger::before {
-  transform: translateY(-6px);
+/* Animation for mobile menu collapse */
+.collapsing {
+  transition: height 0.3s ease, width 0.3s ease;
 }
 
-.hamburger::after {
-  transform: translateY(4px);
-}
-
-/* Hamburger Animation when active */
-.navbar-toggle.active .hamburger {
-  background-color: transparent;
-}
-
-.navbar-toggle.active .hamburger::before {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.navbar-toggle.active .hamburger::after {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Close Button for Mobile Menu */
-.nav-close-btn {
-  background: none;
-  border: none;
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1010;
-  padding: 0;
-  display: none; /* Hidden by default, only show in active mobile menu */
-}
-
-/* Show close button only when mobile menu is active */
-.navbar-menu.active .nav-close-btn {
-  display: flex;
-}
-
-.close-icon,
-.close-icon::before,
-.close-icon::after {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 2px;
-  background-color: var(--text-light);
-  border-radius: 2px;
-  transition: all var(--transition-speed) ease;
-}
-
-.close-icon::before {
-  transform: rotate(45deg) translate(6px, -6px);
-}
-
-.close-icon::after {
-  transform: rotate(-45deg) translate(-6px, -6px);
-}
-
-/* Mobile Menu Animation */
+/* Add entrance animation for mobile menu */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -232,124 +277,25 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-  .navbar-container {
-    padding: 0 1.5rem;
+  from {
+    opacity: 0;
   }
-
-  .navbar-link {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.9rem;
+  to {
+    opacity: 1;
   }
 }
 
-@media (max-width: 768px) {
-  /* Show mobile toggle, hide regular menu (will be shown when active) */
-  .navbar-toggle {
-    display: flex;
-  }
-
-  /* Hide navbar menu by default on mobile */
-  .navbar-menu {
-    display: none;
-  }
-
-  /* Show menu when active - Full Screen Overlay */
-  .navbar-menu.active {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--dark-bg);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 80px; /* Space for close button */
-    gap: 2rem;
-    z-index: 1005;
-    animation: fadeIn 0.3s ease-out;
-  }
-
-  .navbar-menu.active .navbar-link {
-    display: block;
-    padding: 0.75rem 2rem;
-    text-align: center;
-    margin: 0;
-    border-radius: var(--border-radius);
-    background-color: rgba(255, 255, 255, 0.05);
-    width: 80%;
-    max-width: 300px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-
-  .navbar-menu.active .navbar-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: var(--text-light);
-    transform: translateX(5px);
-  }
-
-  .navbar-menu.active .navbar-link.active {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-weight: 600;
-  }
-
-  /* Adjust navbar height for mobile */
-  .navbar {
-    height: 60px;
-  }
-
-  .navbar-brand {
-    font-size: 1.2rem;
-  }
-
-  .navbar-title {
-    font-size: 1rem;
-  }
-
-  .navbar-logo-img {
-    height: 35px;
-  }
+/* Apply animations when menu opens */
+.navbar-collapse.show {
+  animation: slideDown 0.3s ease-out forwards;
 }
 
-@media (max-width: 480px) {
-  .navbar-container {
-    padding: 0 1rem;
-  }
-
-  .navbar-brand {
-    font-size: 1.1rem;
-  }
-
-  .navbar-title {
-    font-size: 0.9rem;
-  }
-
-  .navbar-logo-img {
-    height: 30px;
-  }
-
-  .navbar-menu.active {
-    padding-top: 70px;
-  }
-
-  .navbar-menu.active .navbar-link {
-    width: 85%;
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-  }
+/* For better compatibility with Bootstrap's collapse */
+.navbar-collapse.collapsing {
+  transition: none; /* Override during transition */
 }
 
-/* Add some spacing at the top of body to account for fixed navbar */
+/* Body padding for fixed navbar */
 body {
   padding-top: 70px;
 }
