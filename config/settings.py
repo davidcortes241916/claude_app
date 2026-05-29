@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #apps
-    'apps.core',
-    'apps.ticket'
+    'apps.core'
 ]
 
 MIDDLEWARE = [
