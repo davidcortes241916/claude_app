@@ -16,8 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from static.mcp.views import mcp_endpoint, commits_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include('apps.core.urls'))
+    path("", include('apps.core.urls')),
+    path("mcp/", mcp_endpoint),
+    path("mcp/commits/", commits_view, name="mcp_commits"),
+    path("practicaMCPs/", include("apps.practicaMCPs.urls")),
 ]

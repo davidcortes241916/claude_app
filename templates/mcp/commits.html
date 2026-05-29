@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/mcp.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Últimos commits proyecto: {{repo}}</h1>
+    <div class="card">
+        {% for commit in commits %}
+        <div class="card-commit">
+            <h3 class="card-commit-message">{{ commit.message }}</h3>
+
+            <p class="card-commit-author">
+                <strong>Autor:</strong> {{ commit.author }}
+            </p>
+
+            <p class="card-commit-date">
+                <strong>Fecha:</strong> {{ commit.date }}
+            </p> <br>
+
+            <a class="card-commit-url" href="{{ commit.url }}" target="_blank">
+                Ver commit
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

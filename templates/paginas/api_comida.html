@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}API COMIDA{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/api_comida.css' %}">
+{% endblock %}
+{% block content %} 
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="comida_nav">
+                <select class="categoria" id="filtro-categorias">
+                    
+                </select>
+                <button class="btn-filtrar" id="filtrar">Filtrar</button>
+            </div>
+            <div id="result">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+    const filtroCategorias = document.getElementById('filtro-categorias')
+    const btnFiltrar = document.getElementById('filtrar')
+    const resultado = document.getElementById('result')
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadCategorias()
+        getComidas()
+    })
+
+    btnFiltrar.addEventListener('click', getComidas)
+
+    async function loadCategorias() {
+        const response = await fetch('/api/comida/')
+        const data = await response.json()
+
+        filtroCategorias.innerHTML = `
+            <option value="">Todos</option>
+            ${data.comidas.map(c => `
+                <option value="${c.strCategory}">
+                    ${c.strCategory}
+                </option>
+            `).join('')}
+        `
+        }
+
+    async function getComidas() {
+        const catalogo = filtroCategorias.value
+        
+        const response = await fetch(`/api/comida/?catalogo=${catalogo}`)
+        const data = await response.json()
+
+        resultado.innerHTML = (data.comidas || []).map(comidas => `
+                <div class="card">
+                    <div class="card-header">
+                        <h2>${comidas.strCategory}</h2>
+                    </div>  
+                    <div class="card-body">
+                        <img class="comida-image" src="${comidas.strCategoryThumb}" alt="${comidas.strCategory}">
+                        <p>${comidas.strCategoryDescription}</p>
+                    </div>
+                </div>
+            `).join('')
+    }
+</script>  
+{% endblock %}

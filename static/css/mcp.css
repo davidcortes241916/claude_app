@@ -1,0 +1,51 @@
+body {
+    margin: 20px;
+    background-color: #222;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.card-commit {
+    background-color: #333;
+    margin: 50px 50px 50px 50px;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.card-commit-message {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card-commit-author {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.card-commit-date {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.card-commit-url {
+    text-decoration: none;
+    color: #006bb3;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.card-commit-url:hover {
+    color: #0c5e27;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
