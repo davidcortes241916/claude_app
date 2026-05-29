@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}API PRESIDENTES{% endblock %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/api_presidentes.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="search_nav">
+                <input type="text" id="search" placeholder="Nombre presidente">
+                <button class="btn-search" id="btn-search">Buscar</button>
+            </div>
+            <div id="result">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script>
+
+    const search = document.getElementById('search')
+    const btnSearch = document.getElementById('btn-search')
+    const resultado= document.getElementById('result')
+
+    btnSearch.addEventListener('click', getPresidents)
+
+    async function getPresidents() {
+
+        const busqueda = search.value
+
+        const response = await fetch(`/api/presidente/?buscar=${busqueda}`)
+
+        const data = await response.json()
+
+        resultado.innerHTML = data.presidents.map(president => `
+            <div class="card">
+                <div class="card-header">
+                    <h2>${president.name} ${president.lastName}</h2>
+                </div>
+                <div class="card-body">
+                    <img class="president-image" src="${president.image}" alt="${president.name}">
+                    <p><strong>Centro politico: ${president.politicalParty}</strong></p>
+                    <p>${president.description}</p>
+                    <p><strong>Presidente desde ${president.startPeriodDate} hasta ${president.endPeriodDate}</strong></p>
+                </div>
+            </div>
+        `).join('')
+    }
+
+</script>  
+{% endblock %}

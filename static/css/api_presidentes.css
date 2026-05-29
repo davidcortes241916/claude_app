@@ -1,0 +1,101 @@
+:root {
+    --primary-color: #2196f3;
+    --primary-glow: rgba(33, 150, 243, 0.8);
+    --secondary-color: #9c27b0;
+    --text-color: #ffffff;
+    --bg-color: #0a0a12;
+    --nav-bg: #10101a;
+    --dropdown-bg: rgba(20, 20, 35, 0.8);
+    --hover-color: #3f51b5;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --neon-glow: 0 0 10px rgba(33, 150, 243, 0.5),
+        0 0 20px rgba(33, 150, 243, 0.3),
+        0 0 30px rgba(33, 150, 243, 0.1);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --gradient-bg: linear-gradient(135deg, var(--bg-color), #151530);
+    --glass-effect: saturate(180%) blur(10px);
+    --border-radius: 12px;
+    --text-description: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    background: var(--nav-bg);
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gradient-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.search_nav {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 150px 20px 20px 20px;
+}
+
+.search_nav input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-search {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+
+/*presidentes*/
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+
+.president-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: rgba(26, 87, 138, 0.3);
+    color: var(--text-color);
+}
